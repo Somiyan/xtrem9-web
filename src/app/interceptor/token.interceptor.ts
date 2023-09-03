@@ -26,8 +26,13 @@ export class HttpTokenInterceptor implements HttpInterceptor {
         request: HttpRequest<any>,
         next: HttpHandler
     ): Observable<HttpEvent<any>> {
-
-      return next.handle(request);
+      const token = localStorage.getItem('jwtToken'); // Replace with your authentication token
+      const authReq = request.clone({
+        setHeaders: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return next.handle(authReq);
     }
 
 }

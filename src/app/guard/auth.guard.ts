@@ -14,7 +14,7 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       this.userDetails = this.authService.userDetails;
-      if (this.userDetails?.user_id) {
+      if (this.userDetails?._id) {
           return true;
       }
       this.router.navigate(['login']);
@@ -26,7 +26,7 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot
 ) {
     this.userDetails = this.authService.userDetails;
-    if (this.userDetails?.user_id) {
+    if (this.userDetails?._id) {
         return true;
     }
     this.router.navigate(['login']);

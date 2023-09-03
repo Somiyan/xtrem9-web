@@ -52,9 +52,9 @@ export class LoginComponent implements OnInit, OnDestroy {
       password: this.password
     }
     this.loginService.login(formData).subscribe({
-      next: (response: { jwtToken: string }) => {
-        localStorage.setItem("jwtToken", response.jwtToken);
-        this.router.navigate(["pages/landing"]);
+      next: (response: { refresh_token: string }) => {
+        localStorage.setItem("jwtToken", response.refresh_token);
+        this.router.navigate(["ticket-dashboard"]);
     },
     error: (error: any) => {
         console.log(error);

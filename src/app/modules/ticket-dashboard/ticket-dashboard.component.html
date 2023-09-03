@@ -1,0 +1,36 @@
+<div class="col-12">
+    <div class="card">
+        <button pButton class="iButton" icon="pi pi-pencil" type="button" label="Create Ticket"
+            (click)="createTicket()"></button>
+    </div>
+</div>
+
+<div class="col-12">
+    <div class="card">
+        <h5>Your Tickets</h5>
+
+        <p-table [value]="tickets" scrollDirection="both" [scrollable]="true" scrollHeight="400px" styleClass="mt-3"
+            responsiveLayout="scroll">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width:200px" pFrozenColumn>Ticket ID</th>
+                    <th style="width:200px">Ticket Name</th>
+                    <th style="width:300px">Ticket Description</th>
+                    <th style="width:200px">Status</th>
+                    <th style="width:100px">View</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-ticket>
+                <tr>
+                    <td style="width:200px" pFrozenColumn>{{ticket.ticketId}}</td>
+                    <td style="width:200px">{{ticket.ticketName}}</td>
+                    <td style="width:300px">{{ticket.ticketDescription}}</td>
+                    <td style="width:200px">
+                        <span [class]="'ticket-badge status-' + ticket.ticketStatus">{{ticket.ticketStatus}}</span>
+                    </td>
+                    <td style="width:100px"><button pButton class="iButton" icon="pi pi-eye" type="button"></button>
+                    </td>
+            </ng-template>
+        </p-table>
+    </div>
+</div>

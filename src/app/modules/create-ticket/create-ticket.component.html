@@ -1,0 +1,34 @@
+<div class="col-12">
+    <div class="card">
+        <h5>Create Ticket</h5>
+        <div class="p-fluid p-formgrid grid">
+            <div class="field col-12 md:col-6">
+                <label htmlFor="ticket-name">Ticket Name</label>
+                <input pInputText id="ticket-name" [(ngModel)]="ticketName" type="text"
+                    placeholder="Enter Ticket Summary" />
+            </div>
+            <div class="field col-12 md:col-6">
+                <label htmlFor="ticket-name">Ticket Time</label>
+                <input pInputText id="ticket-name" [disabled]="isNewTicket" [(ngModel)]="ticketTime" type="text"
+                    placeholder="" />
+            </div>
+            <div class="field col-12">
+                <label htmlFor="Ticket Description">Ticket Description</label>
+                <input pInputTextarea id="Ticket Description" [(ngModel)]="ticketDescription" rows="4" />
+            </div>
+            <div *ngIf="!isNewTicket" class="field col-12 md:col-3">
+                <label htmlFor="status">Ticket Status</label>
+                <p-dropdown [options]="statusOption" [(ngModel)]="ticketStatus"></p-dropdown>
+            </div>
+            <div class="field col-12 md:col-9">
+                <label htmlFor="remark">Ticket Remark</label>
+                <input pInputTextarea id="remark" [(ngModel)]="ticketRemark" rows="4" />
+            </div>
+
+
+        </div>
+        <div class="col-3">
+            <button pButton label="Submit" (click)="submitTicket()"></button>
+        </div>
+    </div>
+</div>

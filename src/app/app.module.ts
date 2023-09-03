@@ -141,6 +141,10 @@ import { ErrorComponent } from './components/error/error.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { AccessComponent } from './components/access/access.component';
 import { HttpTokenInterceptor } from './interceptor/token.interceptor';
+import { CreateTicketComponent } from './modules/create-ticket/create-ticket.component';
+import { TicketDashboardComponent } from './modules/ticket-dashboard/ticket-dashboard.component';
+import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
     imports: [
@@ -274,11 +278,13 @@ import { HttpTokenInterceptor } from './interceptor/token.interceptor';
         ErrorComponent,
         NotfoundComponent,
         AccessComponent,
+        CreateTicketComponent,
+        TicketDashboardComponent,
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
-        CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService, MenuService, ConfigService,
+        CountryService, CustomerService, EventService, IconService, NodeService,DialogService,DynamicDialogRef,DynamicDialogConfig ,MessageService,
+        PhotoService, ProductService, MenuService, ConfigService,{ provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true }
     ],
     bootstrap: [AppComponent]
 })
