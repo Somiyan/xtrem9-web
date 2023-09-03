@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ConfigService } from '../../service/app.config.service';
 import { AppConfig } from '../../api/appconfig';
 import { Subscription } from 'rxjs';
+import { LoginService } from 'src/app/service/login.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -28,18 +30,35 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   valCheck: string[] = ['remember'];
 
+  email: string = "";
   password: string;
   
   config: AppConfig;
   
   subscription: Subscription;
 
-  constructor(public configService: ConfigService){ }
+  constructor(public loginService: LoginService, private router: Router,public configService: ConfigService){ }
 
   ngOnInit(): void {
     this.config = this.configService.config;
     this.subscription = this.configService.configUpdate$.subscribe(config => {
       this.config = config;
+    });
+  }
+
+  public login(){
+    const formData = {
+      email: this.email,
+      password: this.password
+    }
+    this.loginService.login(formData).subscribe({
+      next: (response: { jwtToken: string }) => {
+        localStorage.setItem("jwtToken", response.jwtToken);
+        this.router.navigate(["pages/landing"]);
+    },
+    error: (error: any) => {
+        console.log(error);
+    },
     });
   }
 
