@@ -16,7 +16,7 @@
                 <label htmlFor="Ticket Description">Ticket Description</label>
                 <input pInputTextarea id="Ticket Description" [(ngModel)]="ticketDescription" rows="4" />
             </div>
-            <div *ngIf="!isNewTicket" class="field col-12 md:col-3">
+            <div *ngIf="!isNewTicket && isAuthorized" class="field col-12 md:col-3">
                 <label htmlFor="status">Ticket Status</label>
                 <p-dropdown [options]="statusOption" [(ngModel)]="ticketStatus"></p-dropdown>
             </div>
@@ -27,8 +27,11 @@
 
 
         </div>
-        <div class="col-3">
+        <div *ngIf="isNewTicket" class="col-3">
             <button pButton label="Submit" (click)="submitTicket()"></button>
+        </div>
+        <div *ngIf="isAuthorized" class="col-3">
+            <button pButton label="Update/Closed" (click)="updateTicket()"></button>
         </div>
     </div>
 </div>

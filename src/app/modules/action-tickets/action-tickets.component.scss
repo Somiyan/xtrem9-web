@@ -1,0 +1,38 @@
+.ticket-badge {
+    border-radius: var(--border-radius);
+    padding: .25em .5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .3px;
+
+    &.status-closed {
+        background: #C8E6C9;
+        color: #256029;
+    }
+
+    &.status-raised {
+        background: #FFCDD2;
+        color: #C63737;
+    }
+
+    &.status-open {
+        background: #FEEDAF;
+        color: #8A5340;
+    }
+
+    &.status-active {
+        background: #B3E5FC;
+        color: #23547B;
+    }
+
+    &.status-renewal {
+        background: #ECCFFF;
+        color: #694382;
+    }
+
+    &.status-proposal {
+        background: #FFD8B2;
+        color: #805B36;
+    }
+}

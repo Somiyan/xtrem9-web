@@ -145,6 +145,7 @@ import { CreateTicketComponent } from './modules/create-ticket/create-ticket.com
 import { TicketDashboardComponent } from './modules/ticket-dashboard/ticket-dashboard.component';
 import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { MessageService } from 'primeng/api';
+import { ActionTicketsComponent } from './modules/action-tickets/action-tickets.component';
 
 @NgModule({
     imports: [
@@ -280,6 +281,7 @@ import { MessageService } from 'primeng/api';
         AccessComponent,
         CreateTicketComponent,
         TicketDashboardComponent,
+        ActionTicketsComponent,
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

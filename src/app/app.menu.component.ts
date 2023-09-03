@@ -36,8 +36,8 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Ticketing Module',
                 items:[
-                    {label: 'Dashboard',icon: 'pi pi-fw pi-home', routerLink: ['/ticket-dashboard']},
-                    // {label: 'Create Ticket',icon: 'pi pi-fw pi-bookmark', routerLink: ['/create-ticket']}
+                    {label: 'Ticket Dashboard',icon: 'pi pi-fw pi-home', routerLink: ['/ticket-dashboard']},
+                    {label: 'Action Ticket',icon: 'pi pi-fw pi-bookmark', routerLink: ['/action-tickets']}
                 ]
             },
             {

@@ -31,6 +31,7 @@ import { AccessComponent } from './components/access/access.component';
 import { AuthGuard } from './guard/auth.guard';
 import { TicketDashboardComponent } from './modules/ticket-dashboard/ticket-dashboard.component';
 import { CreateTicketComponent } from './modules/create-ticket/create-ticket.component';
+import { ActionTicketsComponent } from './modules/action-tickets/action-tickets.component';
 @NgModule({
     imports: [
         RouterModule.forRoot([
@@ -42,7 +43,7 @@ import { CreateTicketComponent } from './modules/create-ticket/create-ticket.com
                     {path: '', component: DashboardComponent},
                     {path: 'ticket-dashboard', component: TicketDashboardComponent},
                     {path: 'create-ticket', component: CreateTicketComponent},
-
+                    {path: 'action-tickets', component: ActionTicketsComponent},
                     //
                     {path: 'uikit/formlayout', component: FormLayoutComponent},
                     {path: 'uikit/input', component: InputComponent},
