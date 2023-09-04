@@ -22,14 +22,15 @@ export class CreateTicketComponent implements OnInit {
   public userDetails: any;
   public isAuthorized: boolean = false;
   public isUpdateForm: boolean = false;
+  public ticketHistory: any[] = [];
 public ticketId: string= "";
   constructor(private _ticketService: TicketService,
     private ref: DynamicDialogRef,
     public config: DynamicDialogConfig,
     private _auth: AuthService) {
     this.statusOption = [
+      {label: "Raised", value: "raised"},
       {label: "Open",  value: "open"},
-      {label: "Active", value: "active"},
       {label: "Closed", value: "closed"},
     ];
     this.isNewTicket = this.config.data.ref === "create-ticket";
@@ -40,12 +41,13 @@ public ticketId: string= "";
 
   ngOnInit(): void {
     if(this.isUpdateForm){
-      const {ticketName, ticketDescription, ticketStatus, ticketTime, ticketRemark, _id} = this.config.data.formData;
+      const {ticketName, ticketDescription, ticketStatus, ticketTime, ticketRemark, _id, ticketHistory} = this.config.data.formData;
       this.ticketName = ticketName;
       this.ticketDescription = ticketDescription;
       this.ticketTime = moment(ticketTime).format('YYYY-MM-DD HH:mm:ss');
       this.ticketRemark = ticketRemark;
-      this.ticketId = _id
+      this.ticketId = _id;
+      this.ticketHistory = ticketHistory;
     }
   }
   

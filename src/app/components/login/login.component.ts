@@ -4,6 +4,7 @@ import { AppConfig } from '../../api/appconfig';
 import { Subscription } from 'rxjs';
 import { LoginService } from 'src/app/service/login.service';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/service/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -37,7 +38,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   
   subscription: Subscription;
 
-  constructor(public loginService: LoginService, private router: Router,public configService: ConfigService){ }
+  constructor(public loginService: LoginService, private router: Router,public configService: ConfigService, private _auth: AuthService){ }
 
   ngOnInit(): void {
     this.config = this.configService.config;
@@ -54,7 +55,11 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.loginService.login(formData).subscribe({
       next: (response: { refresh_token: string }) => {
         localStorage.setItem("jwtToken", response.refresh_token);
-        this.router.navigate(["ticket-dashboard"]);
+        if(this._auth.userDetails.userRole !== 1){
+          this.router.navigate(['action-tickets']);
+        }else{
+          this.router.navigate(['ticket-dashboard']);
+        }
     },
     error: (error: any) => {
         console.log(error);

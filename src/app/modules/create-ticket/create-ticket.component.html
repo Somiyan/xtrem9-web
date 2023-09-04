@@ -20,13 +20,41 @@
                 <label htmlFor="status">Ticket Status</label>
                 <p-dropdown [options]="statusOption" [(ngModel)]="ticketStatus"></p-dropdown>
             </div>
-            <div class="field col-12 md:col-9">
+            <div *ngIf="!isNewTicket && isAuthorized" class="field col-12 md:col-9">
                 <label htmlFor="remark">Ticket Remark</label>
                 <input pInputTextarea id="remark" [(ngModel)]="ticketRemark" rows="4" />
             </div>
-
-
         </div>
+
+        <div *ngIf="ticketHistory.length > 0" class="col-12 md:col-12">
+            <!-- <div class="card"> -->
+            <p-accordion>
+                <p-accordionTab header="History">
+                    <p-table [value]="ticketHistory" scrollDirection="both" [scrollable]="true" scrollHeight="400px"
+                        styleClass="mt-3" responsiveLayout="scroll">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th style="width:200px" pFrozenColumn>Updated By</th>
+                                <th style="width:200px">Remark</th>
+                                <th style="width:200px">Status</th>
+                                <th style="width:200px">Updated At</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-ticket let-index>
+                            <tr>
+                                <td style="width:200px" pFrozenColumn>{{ticket.updatedBy.userName}}</td>
+                                <td style="width:200px">{{ticket.lastRemark}}</td>
+                                <td style="width:200px">
+                                    <span [class]="'ticket-badge status-' + ticket.status">{{ticket.status}}</span>
+                                </td>
+                                <td style="width:200px">{{ticket.updateAt | date:"medium"}}</td>
+                        </ng-template>
+                    </p-table>
+                </p-accordionTab>
+            </p-accordion>
+            <!-- </div> -->
+        </div>
+
         <div *ngIf="isNewTicket" class="col-3">
             <button pButton label="Submit" (click)="submitTicket()"></button>
         </div>
